@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall of Games</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<style>
+    body {
+        background-color: #10141c;
+        
+    }
+
+    .icon-button {
+        background-color: transparent;
+        font-size: 20px;
+        border: none;
+        padding: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+ 
+    .icon-button::after {
+        display: none;
+    }
+
+ 
+    .search-container {
+        position: relative;
+        margin-inline: 20px;
+    }
+
+   
+    .search-container .fa-magnifying-glass {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        color: #666;
+    }
+
+    
+    .search-container input {
+        padding-left: 40px;
+        border-radius: 100px;
+    }
+
+    .main-title {
+            font-size: 3rem;
+            color: #C7D5E0;
+        }
+
+        img.img-fluid {
+            object-fit: cover;
+            width: 100%; /* Ensures the image spans the width of the container */
+            height: 300px; /* Ensures the image spans the height of the container */
+            max-width: 100%; /* Ensures responsive scaling */
+            max-height: 100%; /* Prevents the image from exceeding container bounds */
+        }
+
+        .login-box {
+            background-color: #E8E8E8;
+            border-radius: 10px;
+            padding: 50px;
+            width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .login-box input {
+            border-radius: 5px;
+        }
+
+        .social-login-btns button {
+            margin: 5px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+        
+        .login-form-container {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        .login-form-container.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .card-body h5{
+            font-size: 30px;
+        }
+
+        .card-body .text{
+            font-size: 23px;
+        }
+
+
+</style>
+
+<body>
+     <!-- Navbar -->
+     <nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="background-color: #1B2838 !important;">
+        <div class="container-fluid">
+            <i class="fa-solid fa-dice" style="color: #1B9AAA; font-size: 40px; padding: 5px;"></i>
+            <a class="navbar-brand" style="font-weight: 500;"> Hall of Games</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarDark">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Home.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Discover.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">Discover</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="community.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="News.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="search-container">
+                            <i class="fa fa-magnifying-glass"></i>
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div class="dropdown">
+                        <button class="icon-button dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-globe" style="color: #1B9AAA;"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li><a class="dropdown-item" href="#">English (NA)</a></li>
+                          <li><a class="dropdown-item" href="#">English (EUW)</a></li>
+                          <li><a class="dropdown-item" href="#">Filipino</a></li>
+                          <li><a class="dropdown-item" href="#">Deutsch</a></li>
+                          <li><a class="dropdown-item" href="#">Espanyol</a></li>
+                          <li><a class="dropdown-item" href="#">Francais</a></li>
+                          <li><a class="dropdown-item" href="#">Italiano</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button type="button" onclick="toggleLoginForm()" class="nav-link active" style="border-radius: 70px; background-color: #0B0E11; color: white; margin-top: 5px; padding-inline: 35px; padding-block: 3px;">Log in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hidden login form -->
+    <div id="loginFormContainer" class="login-form-container d-flex align-items-center vh-100">
+        <div class="login-box">
+            <h3 class="text-center mb-4">Sign In</h3>
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-dark text-submit">Sign In</button>
+                </div>
+            </form>
+            <div class="text-center mt-3">or sign in with</div>
+            <div class="social-login-btns d-flex justify-content-center mt-3">
+                <button class="btn btn-primary"><i class="fab fa-facebook-f"></i></button>
+                <button class="btn btn-light"><i class="fab fa-google"></i></button>
+                <button class="btn btn-dark"><i class="fab fa-steam"></i></button>
+                <button class="btn btn-success"><i class="fab fa-xbox"></i></button>
+                <button class="btn btn-primary"><i class="fab fa-playstation"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- NEWS -->
+
+    <div class="container text-center mt-5">
+        <h1 class="main-title text-start mb-5">
+            <i class="fa-solid fa-dice" style="color: #1B9AAA; font-size: 60px;"></i> 
+            Hall Of Community
+        </h1>
+    
+        <!-- Row 1 -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-5 col-sm-4">
+                            <img src="don1.jpg" class="img-fluid w-100" alt="card-horizontal-image">
+                        </div>
+                        <div class="col-7 col-sm-8">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3" style="background-image: linear-gradient(to right, red , yellow); display: inline-block; padding: 5px;">Gumaluxia  ~ ★ ★ ★ ★ ★</h5>
+                                <p class="text card-text">Im enjoying the games i bought too much. It's kind of addicting. I didn't notice that it's already morning. WOW. Quality games</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Row 2 -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-5 col-sm-4">
+                            <img src="ter.jpg" class="img-fluid w-100" alt="card-horizontal-image">
+                        </div>
+                        <div class="col-5 col-sm-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="background-image: linear-gradient(to right, red , yellow); display: inline-block; padding: 5px;">Chewy ~  ★ ★ ★ ★ </h5>
+                                <p class="text card-text">Havin a blast. Took a selfie cause of enjoyment. Didn't gave 5 stars cause this games aint as good lookin as me</p>
+                                <p class="card-text"><small class="text-muted">Last updated 5 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Row 3 -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-5 col-sm-4">
+                            <img src="zid.png" class="img-fluid w-100" alt="card-horizontal-image">
+                        </div>
+                        <div class="col-7 col-sm-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="background-image: linear-gradient(to right, red , yellow); display: inline-block; padding: 5px;">Dyluxe ~ ★ ★ ★</h5>
+                                <p class="text card-text">Look at me, You're my game now</p>
+                                <p class="card-text"><small class="text-muted">Last updated 10 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-5 col-sm-4">
+                            <img src="prends.jpg" class="img-fluid w-100" alt="card-horizontal-image">
+                        </div>
+                        <div class="col-7 col-sm-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="background-image: linear-gradient(to right, red , yellow); display: inline-block; padding: 5px;">PurpleDonAlba ~ ★ ★ ★ ★ ★</h5>
+                                <p class="text card-text">Made friends because of Hall of games, YEY! •ᴗ•. Thank you Hall of Games :> </p>
+                                <p class="card-text"><small class="text-muted">Last updated 10 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-5 col-sm-4">
+                            <img src="rojo.png" class="img-fluid w-100" alt="card-horizontal-image">
+                        </div>
+                        <div class="col-7 col-sm-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="background-image: linear-gradient(to right, red , yellow); display: inline-block; padding: 5px;">Takot Sa Babae ~ ★</h5>
+                                <p class="text card-text">Ain't playing games no more. Always losing to this st**id game.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 10 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-5 col-sm-4">
+                            <img src="kean.png" class="img-fluid w-100" alt="card-horizontal-image">
+                        </div>
+                        <div class="col-7 col-sm-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="background-image: linear-gradient(to right, red , yellow); display: inline-block; padding: 5px;">BestVladNA ~ ★ ★ ★ ★ ★ </h5>
+                                <p class="text card-text">Rockin in games. Im a beast. LEZGOOOOOO</p>
+                                <p class="card-text"><small class="text-muted">Last updated 10 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-5 col-sm-4">
+                            <img src="lance.png" class="img-fluid w-100" alt="card-horizontal-image">
+                        </div>
+                        <div class="col-7 col-sm-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="background-image: linear-gradient(to right, red , yellow); display: inline-block; padding: 5px;">I Will Be Joker ~ ★ ★</h5>
+                                <p class="text card-text">Prices are kinda expensive. Can't buy my favorite game. Im here, waiting in  the corner, for a sale.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 10 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+ <!--footer -->
+ <div class="row m-0" style="background-color: rgb(128, 128, 128) !important;" id="aboutus">
+    <div class="col-sm-4">
+    </div>
+    <div class="footer col-sm-4 p-0 text-center d-flex flex-column align-items-center justify-content-center">
+        <h6 style="font-size: 18px;"><i class="fa-solid fa-dice" style="color: #1B9AAA; font-size: 40px; padding: 5px;"></i>Hall of Games</h6>
+        <small>© 2024 Hall of Games. All Rights Reserved.</small>
+        <div class="d-flex align-items-center justify-content-center mb-3">
+            <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px;">Privacy Notice </a>
+            <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px; margin-left: 10px;">Terms of Services</a>
+            <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px; margin-left: 10px;">Accessibility</a>
+            <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px; margin-left: 10px;">Cookie Preference</a>
+        </div>
+    </div>
+    <div class="col-sm-4 p-5 text-center">
+    </div>   
+ </div>    
+
+</body>
+
+<script>
+    function toggleLoginForm() {
+        const loginFormContainer = document.getElementById('loginFormContainer');
+        loginFormContainer.classList.toggle('show');
+    }
+</script>
+
+</html>

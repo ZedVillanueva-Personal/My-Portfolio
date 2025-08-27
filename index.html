@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo.jpg" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <!-- <li><a href="">Services</a></li> -->
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-solid fa-circle-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fas fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>    
+            <div class="header-text">
+                <p>Web Developer</p>
+                <H1>Hi, I'm <span>Zed Villanueva</span></H1>
+            </div>
+        </div>
+    </div>
+
+    <!-----About------>
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/user.jpg" alt="">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>My name is Zed Villanueva, an aspiring developer from Quezon City with a strong passion for technology and continuous learning. I am highly motivated, 
+                        adaptable, and detail-oriented, with a natural curiosity that drives me to explore new programming concepts and improve my skills every day. One of my 
+                        greatest strengths is my consistency—I believe that the more I work on something, the more I improve, which allows me to steadily grow and push my skills 
+                        forward. I enjoy solving problems and finding creative solutions, approaching challenges with persistence and a positive mindset. As someone who values growth 
+                        and collaboration, I am eager to contribute my skills to meaningful projects while also learning from others in the field. My goal is to become a well-rounded 
+                        developer who not only writes efficient code but also creates solutions that make a lasting impact.</p>
+
+                        <div class="tab-titles">
+                            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                            <p class="tab-links" onclick="opentab('achievements')">Achievements</p>
+                            <p class="tab-links" onclick="opentab('education')">Education</p>
+                        </div>
+                        <div class="tab-contents active-tab" id="skills">
+                            <ul>
+                                <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
+                                <li><span>Basic Language Knowledge</span><br>C Languages, PHP, Javascript, MYSQL</li>
+                                <li><span>Networking</span><br>IP address and subnetting</li>
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="achievements">
+                            <ul>
+                                <li><span>Leadership</span><br>Certificate of Execellence</li>
+                                <li><span>IT related Certificates</span><br>Visual Graphics Design 
+                                <br>Localhost Setup and Video Streaming Platform
+                                <br>Artificial Intelligence: Where Impossible Meets Reality
+                                <br>Cyber Security: Accidents wont happen if prevention is taken
+                                </li>
+                               
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="education">
+                            <ul>
+                                <li><span>Elementary (2009-2015)</span><br>Cubao Elementary School, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila </li>
+                                <li><span>High School (2015-2019)</span><br>Quezon City High School, Scout, sct. Ybardolaza, Diliman Quezon City</li>
+                                <li><span>Senior High School (2019-2021)</span><br>Arellano University - Juan Sumulong Campus, 2600 Legarda St, Sampaloc Manila, 1008</li>
+                                <li><span>College (2022-present)</span><br>Systems Plus Computer College 1707 E Rodriguez Sr. Ave, Cubao, Quezon City, 1109 Metro Manila</li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-----Services------>
+    <!-- <div class="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Design</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-crop"></i>
+                    <h2>Web Design</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-app-store-ios"></i>
+                    <h2>Web Design</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-----Portfolio------>
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Works</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/solarsystem.jpg" alt="">
+                    <div class="layer">
+                        <h3>Solar System</h3>
+                        <p>
+                            A Personal Project of mine. Did it just for fun and out of boredom. simple yet proud of this small step of mine
+                        </p>
+                        <a href="solar system/solarsystem.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/anime.jpg" alt="">
+                    <div class="layer">
+                        <h3>Anime Website</h3>
+                            <p>
+                                This website is a hub for anime fans, offering updates, reviews, and recommendations on your favorite shows and movies.
+                            </p>
+                            <a href="Uizard Project/uizard.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/gamestore.jpg" alt="">
+                    <div class="layer">
+                        <h3>Game Store Website</h3>
+                            <p>
+                                An online platform where users can browse, purchase, and sometimes download video games, consoles, and gaming accessories.
+                            </p>
+                            <a href="project don/Discover.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/gamestore2.jpg" alt="">
+                    <div class="layer">
+                        <h3>Game Store Website 2.0</h3>
+                            <p>
+                            An upgraded gamestore website that i did with new features. (used a local database so i can't include it in this file, but can show it as a presentation)
+                            </p>
+                            <a href="#portfolio"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-----Portfolio------>
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>zedvillanueva61@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i>09387454614</p>
+                    <div class="social-icons">
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                    <a href="images/My-CV.pdf" download class="btn btn2">Download CV</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Name" required>
+                        <input type="email" name="Email" placeholder="Email" required>
+                        <textarea name="Message" rows="6" placeholder="Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="owner">
+            <p>Made by Zed Villanueva</p>
+        </div>
+    </div>
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    var sidemenu = document.getElementById("sidemenu");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link")
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab")
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+    function openmenu(){
+        sidemenu.style.right = "0";
+    }
+    function closemenu(){
+        sidemenu.style.right = "-200px";
+    }
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzxhCLDZ7HmeEUtIiFJ26bUx84hsBTwGqFjY64RTW9-PdwIAQY23z88w8IMW5SJwbymBA/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg");
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent succesfully!!!"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall of Games</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #10141c;
+            overflow-x: hidden;
+        }
+
+        h5{
+            font-size: 22px;
+        }
+
+        .icon-button {
+            background-color: transparent;
+            font-size: 20px;
+            border: none;
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-button::after {
+            display: none;
+        }
+
+        .search-container {
+            position: relative;
+            margin-inline: 20px;
+        }
+
+        .search-container .fa-magnifying-glass {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .search-container input {
+            padding-left: 40px;
+            border-radius: 100px;
+        }
+
+        video {
+            object-fit: cover;
+            width: 100%;
+            height: 700px;
+        }
+
+        .title{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .title h2{
+            font-size: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            color: white;
+        }
+
+        .title i{
+            font-size: 70px !important;
+        }
+
+        .play-button-container {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .play-button {
+            background: #fbca1f;
+            font-family: inherit;
+            padding: 0.6em 1.3em;
+            font-weight: 900;
+            font-size: 18px;
+            border: 3px solid black;
+            border-radius: 0.4em;
+            box-shadow: 0.1em 0.1em;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            transform: translate(-0.05em, -0.05em);
+            box-shadow: 0.15em 0.15em;
+        }
+
+        .login-box {
+            background-color: #E8E8E8;
+            border-radius: 10px;
+            padding: 50px;
+            width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-box input {
+            border-radius: 5px;
+        }
+
+        .social-login-btns button {
+            margin: 5px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+        
+        .login-form-container {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        .login-form-container.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .title .navbar-brand:hover {
+        color: white; 
+        }
+
+        .carousel-control-prev {
+            left: -10%; /* Adjust this value to move the left arrow outwards */
+        }
+
+        .carousel-control-next {
+            right: -10%; /* Adjust this value to move the right arrow outwards */
+        }   
+
+        .card{
+            background-color: transparent !important;
+            border: none;
+            color: white;
+            position: relative;
+        }
+
+        .card-body .price {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-body .price .discount {
+            color: black;
+            font-size: 13px;
+            background-color: #fbca1f;
+            border:1px solid #fbca1f;
+            font-weight: 500;
+            padding: 5px;
+            padding-inline: 10px;
+            border-radius: 50px;
+        }
+
+        .card-body .price div{
+            margin-right: 11px;
+        }
+
+        .card-body .price .cprice,.ogprice{
+            font-weight: 300;
+            font-family: inherit;
+            font-size: 17px;
+        }
+
+        .card-body .price .nodiscount{
+            font-weight: 300;
+            font-family: inherit;
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        #about{
+        background: url('bg1.jpg') no-repeat;
+        background-size: cover;
+        background-attachment: fixed; /* eto yung parallax effect */
+        width: 100%;
+        height: 500px;
+        }
+
+        #what{
+        background: url('bg2.jpg') no-repeat;
+        background-size: cover;
+        background-attachment: fixed; /* eto yung parallax effect */
+        width: 100%;
+        height: 500px;
+        }
+
+        #about .head{
+            color: white;
+            position: relative;
+            top: 30%;
+            left: 7%;
+        }
+
+        #about p{
+            color: white;
+            position: relative;
+            top: 30%;
+            left: 8%;
+        }
+
+        #about img{
+            position: relative;
+            width: 400px;
+            top: 37.5%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+        }
+
+        #what .head{
+            color: white;
+            position: relative;
+            top: 35%;
+            left: 25%;
+            transform: translate(50%, 50%);
+        }
+
+        #what p{
+            color: white;
+            position: relative;
+            top: 35%;
+            left: 25%;
+            transform: translate(50%, 50%);
+        }
+
+        #what img{
+            position: relative;
+            top: 9%;
+            left: 15%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="background-color: #1B2838 !important;">
+        <div class="container-fluid">
+            <i class="fa-solid fa-dice" style="color: #1B9AAA; font-size: 40px; padding: 5px;"></i>
+            <a class="navbar-brand" style="font-weight: 500;"> Hall of Games</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarDark">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Home.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Discover.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">Discover</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="community.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="News.html" style="border-radius: 70px; background-color: #0B0E11; margin-top: 5px; margin-inline: 20px; padding-inline: 35px; padding-block: 3px;">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="search-container">
+                            <i class="fa fa-magnifying-glass"></i>
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div class="dropdown">
+                        <button class="icon-button dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-globe" style="color: #1B9AAA;"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li><a class="dropdown-item" href="#">English (NA)</a></li>
+                          <li><a class="dropdown-item" href="#">English (EUW)</a></li>
+                          <li><a class="dropdown-item" href="#">Filipino</a></li>
+                          <li><a class="dropdown-item" href="#">Deutsch</a></li>
+                          <li><a class="dropdown-item" href="#">Espanyol</a></li>
+                          <li><a class="dropdown-item" href="#">Francais</a></li>
+                          <li><a class="dropdown-item" href="#">Italiano</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <button type="button" onclick="toggleLoginForm()" class="nav-link active" style="border-radius: 70px; background-color: #0B0E11; color: white; margin-top: 5px; padding-inline: 35px; padding-block: 3px;">Log in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hidden login form -->
+    <div id="loginFormContainer" class="login-form-container d-flex align-items-center vh-100">
+        <div class="login-box">
+            <h3 class="text-center mb-4">Sign In</h3>
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-dark text-submit">Sign In</button>
+                </div>
+            </form>
+            <div class="text-center mt-3">or sign in with</div>
+            <div class="social-login-btns d-flex justify-content-center mt-3">
+                <button class="btn btn-primary"><i class="fab fa-facebook-f"></i></button>
+                <button class="btn btn-light"><i class="fab fa-google"></i></button>
+                <button class="btn btn-dark"><i class="fab fa-steam"></i></button>
+                <button class="btn btn-success"><i class="fab fa-xbox"></i></button>
+                <button class="btn btn-primary"><i class="fab fa-playstation"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video -->
+    <div style="position: relative;">
+        <video autoplay loop muted src="1025.mp4"></video>
+        <div class="play-button-container">
+            <button class="play-button">Play Now</button>
+        </div>
+        <div class="title">
+            <i class="fa-solid fa-dice" style="color: #1B9AAA; font-size: 40px; padding: 5px;"></i><h2> Hall of Games</h2>
+        </div>
+    </div>
+
+    <!-- Cards Carousel -->
+    <div class="container my-4">
+        <h1 style="color: white;" id="trending">Games</h1>
+    
+        <!-- Card Carousel -->
+        <div id="carouselWithControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+            
+                <div class="carousel-item active">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY GOD OF WAR 2018.html">
+                                    <img src="GOW.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">God Of War</h5>
+                                    <div class="price">
+                                        <div class="discount">-40%</div><div class="cprice" style="text-decoration: line-through;">₱2200</div><div class="ogprice">₱1466</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY GTA V.html">
+                                    <img src="GTA.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">GTA V</h5>
+                                    <div class="price">
+                                        <div class="discount">-54%</div><div class="cprice" style="text-decoration: line-through;">₱1299</div><div class="ogprice">₱588</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY BLACK MYTH WUKONG.html">
+                                    <img src="wukong.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Black Myth Wukong</h5>
+                                    <div class="price">
+                                        <div class="nodiscount">₱2720</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY CYBERPUNK.html">
+                                    <img src="Cyberpunk.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Cyberpunk 2077</h5>
+                                    <div class="price">
+                                        <div class="discount">-60%</div><div class="cprice" style="text-decoration: line-through;">₱2300</div><div class="ogprice">₱900</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY SPIDERMAN 2.html">
+                                    <img src="spiderman.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Spider-Man 2</h5>
+                                    <div class="price">
+                                        <div class="discount">-35%</div><div class="cprice" style="text-decoration: line-through;">₱2800</div><div class="ogprice">₱1800</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY SAINTS ROW.html">
+                                    <img src="saints.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Saints Row</h5>
+                                    <div class="price">
+                                        <div class="nodiscount">₱1200</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%; height: 40px;">
+                                <a href="BUY HORIZON ZERO DAWN REMASTERED.html">
+                                    <img src="horizon.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Horizon Zero Dawn Remastered</h5>
+                                    <div class="price">
+                                        <div class="nodiscount">₱3200</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY GOTG.html">
+                                    <img src="Gotg.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Guardians of the Galaxy</h5>
+                                    <div class="price">
+                                        <div class="discount">-66%</div><div class="cprice" style="text-decoration: line-through;">₱2700</div><div class="ogprice">₱900</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY RAGNAROK.html">
+                                    <img src="God_of_War_Ragnarök_cover.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">God Of War: Ragnarok</h5>
+                                    <div class="price">
+                                        <div class="nodiscount">₱2999</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY RED DEAD.html">
+                                    <img src="Reddeadcover.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Red Dead Redemption 2</h5>
+                                    <div class="price">
+                                        <div class="ndiscount">₱2599</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%; height: 40px;">
+                                <a href="BUY KINGDOM HEARTS.html">
+                                    <img src="kingdomhearts.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Kingdom Hearts 3 + ReMind</h5>
+                                    <div class="price">
+                                        <div class="nodiscount">₱2990</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <a href="BUY GHOSTRUNNER.html">
+                                    <img src="Ghostrunner_cover_art.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 40vh; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Ghostrunner</h5>
+                                    <div class="price">
+                                        <div class="nodiscount">₱2600</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <a class="carousel-control-prev" href="#carouselWithControls" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselWithControls" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- background -->
+    <section id="about">
+        <h1 class="head">Elevate your game</h1>
+        <p>with our Premium for only ₱100 a month</p>
+        <img src="rdrpng.png">
+    </section>
+
+    <section id="what" class="mt-3">
+        <h1 class="head">Feel Real</h1>
+        <p>Feel the immersion in every game</p>
+        <img src="kratos.png">
+    </section>
+
+    <!-- about -->
+		<div class="row m-0 mt-5 mb-5 bg-dark text-light border pt-3 pb-3" style="border: none !important;">
+            <div class="col-sm-2 text-center">
+                <img src="" alt="">
+            </div>
+            <div class="col-sm-8 d-flex justify-content-center">
+                <div class="text-center">
+                  <p class="h3 text-center">What is Hall of Games?
+                  </p>
+                  <p>
+                    Welcome to Hall of Games – your ultimate online destination for everything in the world of gaming! We specialize in providing a vast selection of video games across all popular platforms, including PC, PlayStation, Xbox, and Nintendo Switch. Whether you're a fan of action-packed adventures, immersive role-playing games, strategic simulations, or casual puzzle games, Hall of Games has something for every kind of player.
+                    <br>
+
+                    Our website is designed with gamers in mind, offering a user-friendly interface that makes it easy to browse, compare, and purchase the latest titles as well as timeless classics. We feature a curated selection of top releases, fan favorites, and hidden gems across multiple genres. Additionally, we keep our collection updated with new releases, expansions, and pre-orders, ensuring you have access to the hottest games as soon as they hit the market.
+                    <br>
+                </p>
+                <p>
+                    At Hall of Games, we go beyond just offering games; we provide a comprehensive shopping experience. Each product page includes detailed descriptions, gameplay trailers, user reviews, and system requirements to help you make informed choices. For dedicated gamers looking to enhance their gameplay, we offer exclusive deals, bundles, and limited-edition packages that provide great value and unique collectibles.
+                    <br>
+
+                    Whether you’re a seasoned gamer or a casual player, Hall of Games is committed to delivering the best gaming experience, from an easy shopping process to quick, secure delivery options. Join our community, explore our offerings, and level up your gaming journey at Hall of Games—where your next adventure begins!
+                  </p>
+              </div>
+            </div>
+            <div class="col-sm-2 text-center"></div>
+        </div>
+
+    <!--footer -->
+    <div class="row m-0 mt-5" style="background-color: rgb(128, 128, 128) !important;" id="aboutus">
+        <div class="col-sm-4">
+        </div>
+        <div class="footer col-sm-4 p-0 text-center d-flex flex-column align-items-center justify-content-center">
+            <h6 style="font-size: 18px;"><i class="fa-solid fa-dice" style="color: #1B9AAA; font-size: 40px; padding: 5px;"></i>Hall of Games</h6>
+            <small>© 2024 Hall of Games. All Rights Reserved.</small>
+            <div class="d-flex align-items-center justify-content-center mb-3">
+                <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px;">Privacy Notice </a>
+                <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px; margin-left: 10px;">Terms of Services</a>
+                <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px; margin-left: 10px;">Accessibility</a>
+                <a href="#aboutus" style="color: rgb(54, 54, 54); font-size: 14px; margin-left: 10px;">Cookie Preference</a>
+            </div>
+        </div>
+        <div class="col-sm-4 p-5 text-center">
+        </div>   
+    </div>    
+</body>
+
+<script>
+    function toggleLoginForm() {
+        const loginFormContainer = document.getElementById('loginFormContainer');
+        loginFormContainer.classList.toggle('show');
+    }
+</script>
+
+</html>

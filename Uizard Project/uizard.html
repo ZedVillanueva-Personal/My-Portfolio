@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="uizard.css">
+
+</head>
+
+<style type="text/css">
+    #about{
+        background: url('bg1.jpg') no-repeat;
+        background-size: cover;
+        background-attachment: fixed; /* eto yung parallax effect */
+        width: 100%;
+        height: 500px;
+        }
+
+        #what{
+        background: url('bg2.jpg') no-repeat;
+        background-size: cover;
+        background-attachment: fixed; /* eto yung parallax effect */
+        width: 100%;
+        height: 500px;
+        }
+
+        #about .head{
+            color: Black;
+            position: relative;
+            top: 30%;
+            left: 7%;
+        }
+
+        #about p{
+            color: black;
+            position: relative;
+            top: 30%;
+            left: 8%;
+        }
+
+        #about img{
+            position: relative;
+            width: 600px;
+            top: 37.5%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+        }
+
+        .login-box {
+            color: white;
+            position: relative;
+            background-color: #535353;
+            border-radius: 10px;
+            padding: 50px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        
+        .login-box input {
+            border-radius: 5px;
+        }
+
+        .social-login-btns button {
+            margin: 5px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+        
+        .login-form-container {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        .login-form-container.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-box img {
+            position: absolute;
+            width: 60px;
+            top: 15%; /* Adjust for your desired overlap */
+            left: 40%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .login-box .cat {
+            position: absolute;
+            width: 100px;
+            top: 21%; /* Adjust for your desired overlap */
+            left: 80%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+       
+</style>
+
+<body>
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-xl navbar-light bg-custom" style="background-color: #183f1f;">
+        <div class="container-fluid">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle me-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="color: black; background-color: transparent !important; border: 0; font-size: 25px; transform: scale(1.3, 1);">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: grey !important;">
+                    <li><a class="dropdown-item" href="#carouselDark">Highlights</a></li>
+                    <li><a class="dropdown-item" href="#trending">Top Trending</a></li>
+                    <li><a class="dropdown-item" href="#aboutus">About Us</a></li>
+                </ul>
+            </div>
+            <a class="navbar-brand" href="#" style="color: white; font-size: 30px; font-family: 'Roboto', sans-serif;"><i class="fa-regular fa-circle-a"></i>Aniflix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBasic" aria-controls="navbarBasic" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse show" id="navbarBasic">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                    <li class="nav-item">
+                        <div class="input-group ms-5" style="width: 400px;">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="outline: none !important; box-shadow: none !important; border: none;">
+                            <button style="background-color: #4cd964; border: none; width: 50px; border-radius: 6px; margin-left: -5px !important;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div id="joinus">Join us in 
+                            <a href="https://www.facebook.com/zedvillanueva41">
+                                <i class="fa-brands fa-facebook" style="color: #1877F2 !important;"></i>
+                            </a>
+                            <a href="https://discord.com">
+                                <i class="fa-brands fa-discord" style="color: #7289da !important;"></i>
+                            </a>
+                            <a href="https://www.reddit.com" style="color: #FF4500 !important;">
+                                <i class="fab fa-reddit"></i>
+                            </a>
+                            <a href="https://www.instagram.com/zzdv_16/" class="ins">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div> 
+                    </li>
+                    <div class="txt ms-5">
+                        <a class="nav-link active" aria-current="page" href="#carouselDark" style="color: white; font-size: 18px;">Highlights</a>
+                    </div>
+
+                    <div class="txt ms-5">
+                        <a class="nav-link active" aria-current="page" href="#trending" style="color: white; font-size: 18px;">Top Trending</a>
+                    </div>
+
+                    <div class="txt ms-5">
+                        <a class="nav-link active" aria-current="page" href="#aboutus" style="color: white; font-size: 18px;">About us</a>
+                    </div>
+                </ul>
+                <form class="d-flex me-5">
+                    <button type="button" class="btn btn-outline-success ms-3" onclick="toggleLoginForm()" style="color: black; background-color: #4cd964;">Login <i class="fa-solid fa-right-to-bracket"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+     <!-- Hidden login form -->
+     <div id="loginFormContainer" class="login-form-container d-flex align-items-center vh-100" style=" height: 100px;">
+        <div class="login-box">
+                <img src="strawhat.png" alt="">
+                <img class="cat" src="cat.png" alt="">
+            <h3 class="text-center mb-4">Sign In</h3>
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-dark text-submit">Sign In</button>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-dark text-submit mt-2">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Carousel -->
+    <div id="carouselDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselDark" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselDark" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselDark" data-bs-slide-to="2"></li>
+            <li data-bs-target="#carouselDark" data-bs-slide-to="3"></li>
+            <li data-bs-target="#carouselDark" data-bs-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="8.jpeg" class="d-block carousel-image" alt="Slide 1">
+                <div class="carousel-caption d-none d-sm-block">
+                    <h1>Kaiju no. 8</h1>
+                    <div>After the destruction of their hometown, childhood friends Kafka Hibino and Mina Ashiro <br> make a pact to become officers in the Defense Force—a militarized 
+                        organization tasked with protecting <br>Japan from colossal monsters known as "kaijuu." Decades later, the 32-year-old Kafka has all but given up <br>on his dreams of 
+                        heroism. Instead, he cleans up the remains of the slaughtered kaijuu after they are <br>defeated by valiant soldiers—including Mina, who has successfully achieved 
+                        their shared goal.</div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="demon.jpg" class="d-block carousel-image" alt="Slide 2">
+                <div class="carousel-caption d-none d-sm-block">
+                    <h1>Demon Slayer: Hashira Training Arc</h1>
+                    <p>Adaptation of the Hashira Training Arc. The Hashira, the Demon Slayer Corps' highest ranking swordsmen <br>and members. 
+                        The Hashira Training has begun in order to face the forthcoming battle against <br>Muzan Kibutsuji. Each with their own thoughts and hopes 
+                        held in their hearts, a new story for Tanjiro <br>and the Hashira begins.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="konosuba.jpg" class="d-block carousel-image" alt="Slide 3">
+                <div class="carousel-caption d-none d-sm-block">
+                    <h1>Konosuba: Season 3</h1>
+                    <div>Kazuma Satou, former NEET and current reincarnated adventurer, finally returns home after the incident at <br>the Crimson Demon village.
+                        He is joined by his ever-reliable companions: self-absorbed goddess Aqua,<br> one-trick pony arch-wizard Megumin, and masochistic crusader Lalatina Ford "Darkness" 
+                        Dustiness.<br> Following their recent exploits, the party is one step closer to vanquishing the Demon King and his <br>armies—a terrifying task that Kazuma is eager to 
+                        ignore for as long as possible.</div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="MHA.jpg" class="d-block carousel-image" alt="Slide 4">
+                <div class="carousel-caption d-none d-sm-block">
+                    <h1>My Hero Academia: Season 7</h1>
+                    <div>It has been seven years since Izuku Midoriya joined the prestigious U.A High, a school for gifted<br> youngsters seeking to become professional heroes in the 
+                        future. However, life was not a bed of roses for<br> young Midoriya. Ever since he was a child, he only dreamed about one thing, to be a superhero like his<br> 
+                        idol, All Might.</div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="dandadan.jpg" class="d-block carousel-image" alt="Slide 5">
+                <div class="carousel-caption d-none d-sm-block">
+                    <h1>Dandadan</h1>
+                    <div>After being aggressively rejected, Momo Ayase finds herself sulking when she stumbles across a boy<br> being bullied. 
+                        Saved by her rash kindness, the alien-obsessed boy attempts to speak to her about<br> extraterrestrial interests he believes they share. 
+                        </div>
+                </div>
+            </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselDark" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselDark" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+
+    <!-- Cards -->
+    <div class="container my-4">
+        <h1 style="color: white;" id="trending">Top Trending</h1>
+    
+        <!-- Card Carousel -->
+        <div id="carouselWithControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+            
+                <div class="carousel-item active">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="OP.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">1. One Piece</h5>
+                                    <a href="op.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="DDD.jpg" class="card-img-top" alt="Dandadan" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">2. Dandadan</h5>
+                                    <a href="cardview.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="bluelock.jpeg" class="card-img-top" alt="Blue Lock Season 2" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">3. Blue Lock Season 2</h5>
+                                    <a href="bluelock.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="bluebox.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">4. Blue Box</h5>
+                                    <a href="bluebox.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3 bleach-card" style="width: 100%;">
+                                <img src="bleach.jpg" class="card-img-top" alt="Bleach: Thousand-Year Blood War" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">5. Bleach: Thousand-...</h5>
+                                    <a href="bleach.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3 kenshin-card" style="width: 100%;">
+                                <img src="kenshin.jpg" class="card-img-top" alt="Blue Lock Season 2" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">6. Rurouni Kenshin:...</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="zero.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">7. Re: Zero Season 3</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="oshi-no-ko-season-2-key-visual-v0-o8EhcuSHC2__9L52lzjMGI9pHds9z3J3PWFGnhIcPLY.jpg" class="card-img-top" alt="Bleach: Thousand-Year Blood War" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">8. Oshi no ko Season 2</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="wind.jpg" class="card-img-top" alt="Blue Lock Season 2" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">9. Wind Breaker</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="dragon.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">10. Goodbye, Dragon Life</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <a class="carousel-control-prev" href="#carouselWithControls" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselWithControls" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <section id="about">
+        <h1 class="head">Does ads bother you?</h1>
+        <p>with our Premium for only ₱100 a month. no ads will disturb your favorite anime</p>
+        <img src="angel1.png">
+    </section>
+
+    
+    
+    <!--footer -->
+    <div class="row m-0" style="background-color: rgb(128, 128, 128) !important;" id="aboutus">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4 p-5 text-center">
+            <h4>Aniflix</h4>
+            <small>
+                © 2024 Aniflix, Inc. All Rights Reserved
+            </small>
+        </div>
+            <div class="col-sm-4 p-5 text-center">
+                <h4>Join Us In</h4>
+                <div>
+                    <a href="https://www.facebook.com/zedvillanueva41">
+                        <i class="fa-brands fa-facebook fa-2x" style="color: #111111 !important;"></i>
+                    </a>
+                    <a href="https://discord.com">
+                        <i class="fa-brands fa-discord fa-2x" style="color: #111111 !important;"></i>
+                    </a>
+                    <a href="https://www.reddit.com" style="color: #111111 !important;">
+                        <i class="fab fa-reddit fa-2x"></i>
+                    </a>
+                    <a href="https://www.instagram.com/zzdv_16/" style="color: #111111 !important;">
+                        <i class="fa-brands fa-instagram fa-2x"></i>
+                    </a>
+                </div>
+            </div>   
+    </div>
+
+</body>
+
+<script>
+    function toggleLoginForm() {
+        const loginFormContainer = document.getElementById('loginFormContainer');
+        loginFormContainer.classList.toggle('show');
+    }
+
+</script>
+</html>
+

@@ -1,0 +1,119 @@
+* {
+    border: 0;
+    outline: 0;
+}
+
+body {
+    background-color: #1c263e;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+#joinus {
+    color: white;
+    font-size: 20px;
+    margin-top: 2px;
+    margin-left: 150px;
+}
+
+#joinus a {
+    display: inline-block;
+    margin-right: 1px;
+    text-decoration: none;
+}
+
+.ins {
+    background: linear-gradient(90deg, #E1306C, #FCB045);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 22px;
+}  
+
+.carousel-image {
+    position: relative;
+    height: 45vh; 
+    width: 55%;
+    object-fit: cover; 
+    left: 45%;
+    border-radius: 10px;
+}   
+
+.carousel-caption {
+position: absolute; 
+left: 5%; 
+text-align: left; 
+top: 50%;
+color: white !important;
+}
+
+.carousel-indicators li {
+color: transparent; 
+}
+
+.card-img-container {
+position: relative; 
+}
+
+.bleach-card {
+position: relative; 
+}
+
+.bleach-card:hover::after {
+content: "Bleach: Thousand-Year Blood War"; 
+position: absolute; 
+background-color: rgba(0, 0, 0, 0.7); 
+color: white; 
+padding: 5px 10px; 
+border-radius: 5px; 
+left: 50%; 
+top: 50%; 
+transform: translateY(-50%); 
+white-space: nowrap; 
+z-index: 1000; 
+
+}
+
+.bleach-card::after {
+display: block;
+
+}
+
+.bleach-card:hover::after {
+display: block; 
+}
+
+.kenshin-card {
+position: relative; 
+}
+
+.kenshin-card:hover::after {
+content: "Rurouni Kenshin: Kyoto Disturbance"; 
+position: absolute; 
+background-color: rgba(0, 0, 0, 0.7); 
+color: white; 
+padding: 5px 10px; 
+border-radius: 5px; 
+left: 50%; 
+top: 50%; 
+transform: translateY(-50%); 
+white-space: nowrap; 
+z-index: 1000; 
+
+}
+
+.kenshin-card::after {
+display: block;
+
+}
+
+.kenshin-card:hover::after {
+display: block; 
+}
+
+#aboutus a {
+    text-decoration: none; 
+    border: none; 
+}
+

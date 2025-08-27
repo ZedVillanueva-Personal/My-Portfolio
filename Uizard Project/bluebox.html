@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="uizard.css">
+
+</head>
+
+<style>
+    .blurred-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+            filter: blur(20px);
+        }
+        
+         .blurred-background .imgbg {
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            opacity: 0.4; 
+        }
+
+    .video-container {
+    position: relative;
+    width: 100%;  
+    }
+
+    .video-container video {
+       width: 100%;
+       height: 700px;
+    }
+
+    .video-container::after {
+       content: '';
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       width: 100%;
+       height: 30%;
+       background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 20px 30px;
+        border: none;
+        border-radius: 100%;
+        cursor: pointer;
+        z-index: 10;
+        text-align: center;
+    }
+
+    .play-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .play-button-text {
+        display: block;
+        font-size: 18px;
+        color: white;
+        margin-top: 10px;
+        font-family: Arial, sans-serif;
+    }
+
+    .dandatex{
+        color: white;
+        margin-left: 10%;
+    }
+
+    .dandatex .teks{ 
+        margin-top: 30px;
+        width: 50%;
+    }
+
+    .mute-button {
+        position: absolute;
+        color: white;
+        top: 85%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 30%;
+        z-index: 10;
+    }
+        
+    .mute-button:hover, .play-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .video-container .title {
+    position: absolute;
+    top: 65%;               
+    left: 26%;              
+    transform: translate(-50%, -50%);  
+    z-index: 5;            
+    }
+
+    .video-container .title img {
+    max-width: 450px; 
+    height: auto;
+    }
+
+    .video-container .playbtn button{
+        background-color: #ebebeb;
+        padding: 10px;
+        border-radius: 9px;
+    }
+
+    .video-container .playbtn{
+    position: absolute;
+    height: auto;
+    font-size: 30px;
+    top: 85%;               
+    left: 20%;              
+    transform: translate(-30%, -50%);  
+    z-index: 5;    
+    }
+
+    .dropdowneps{
+        position: relative;
+        height: auto;
+        bottom: 180px;
+        left: 60%;
+    }
+
+</style>
+
+<body>
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-xl navbar-light bg-custom" style="background-color: #183f1f;">
+        <div class="container-fluid">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle me-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="color: black; background-color: transparent !important; border: 0; font-size: 25px; transform: scale(1.3, 1);">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: grey !important;">
+                    <li><a class="dropdown-item" href="#carouselDark">Highlights</a></li>
+                    <li><a class="dropdown-item" href="#trending">Top Trending</a></li>
+                    <li><a class="dropdown-item" href="#aboutus">About Us</a></li>
+                </ul>
+            </div>
+            <a class="navbar-brand" href="#" style="color: white; font-size: 30px; font-family: 'Roboto', sans-serif;"><i class="fa-regular fa-circle-a"></i>Aniflix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBasic" aria-controls="navbarBasic" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse show" id="navbarBasic">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                    <li class="nav-item">
+                        <div class="input-group ms-5" style="width: 400px;">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="outline: none !important; box-shadow: none !important; border: none;">
+                            <button style="background-color: #4cd964; border: none; width: 50px; border-radius: 6px; margin-left: -5px !important;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div id="joinus">Join us in 
+                            <a href="https://www.facebook.com/zedvillanueva41">
+                                <i class="fa-brands fa-facebook" style="color: #1877F2 !important;"></i>
+                            </a>
+                            <a href="https://discord.com">
+                                <i class="fa-brands fa-discord" style="color: #7289da !important;"></i>
+                            </a>
+                            <a href="https://www.reddit.com" style="color: #FF4500 !important;">
+                                <i class="fab fa-reddit"></i>
+                            </a>
+                            <a href="https://www.instagram.com/zzdv_16/" class="ins">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div> 
+                    </li>
+                    <div class="txt ms-5">
+                        <a class="nav-link active" aria-current="page" href="uizard.html" style="color: white; font-size: 18px;">Highlights</a>
+                    </div>
+
+                    <div class="txt ms-5">
+                        <a class="nav-link active" aria-current="page" href="uizard.html" style="color: white; font-size: 18px;">Top Trending</a>
+                    </div>
+
+                    <div class="txt ms-5">
+                        <a class="nav-link active" aria-current="page" href="#aboutus" style="color: white; font-size: 18px;">About us</a>
+                    </div>
+                </ul>
+                <form class="d-flex me-5">
+                    <button class="btn btn-outline-success ms-3" type="submit" style="color: black; background-color: #4cd964;">Login <i class="fa-solid fa-right-to-bracket"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Trailer -->
+    <div class="d-flex justify-content-center">
+        <div class="video-container">
+                    <!-- Blurred Background for image -->
+                    <div class="blurred-background">
+                        <img src="bluebox.png" class="imgbg">
+                    </div>
+
+            <video id="video" muted autoplay loop src="bb.mp4"> </video>
+            <button class="play-button" id="playButton">
+                <i class="fa-solid fa-play"></i>
+                <span class="play-button-text">Watch Trailer</span>
+            </button>
+
+            <div class="title">
+                <img src="bb.png" alt="">
+            </div>
+
+            <div class="playbtn">
+                <button  type="submit" ><i class="fa-solid fa-play"></i> Watch Now </button>
+            </div>
+    
+            <button class="mute-button" id="muteButton">
+                <i class="fa-solid fa-volume-mute"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Text -->
+    <div class="dandatex mt-5 mb-5">
+        <H1>Blue Box</H1>
+            <div class="teks">
+                <p>A badminton guy falls for a basketball girl. Do these sports-crossed lovers have a chance?</p>
+            </div> 
+
+        <!-- Seasons -->
+            <div class="dropdowneps">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Episodes <i class="fa-solid fa-caret-down"></i>
+                </a>
+              
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Episode 1 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 2 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 3 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 4 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 5 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 6 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 7 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 8 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 9 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 10 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 11 </a></li>
+                  <li><a class="dropdown-item" href="#">Episode 12 </a></li>
+                </ul>
+              </div>
+    </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-2">
+                  1 of 3
+                </div>
+                <div class="col-8">
+                    <h1 style="color: white;" id="trending">Explore other Animes:</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="OP.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">One Piece</h5>
+                                    <a href="op.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="DDD.jpg" class="card-img-top" alt="Dandadan" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dandadan</h5>
+                                    <a href="cardview.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="bluelock.jpeg" class="card-img-top" alt="Blue Lock Season 2" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Blue Lock S2</h5>
+                                    <a href="bluelock.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="bluebox.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Blue Box</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3 bleach-card" style="width: 100%;">
+                                <img src="bleach.jpg" class="card-img-top" alt="Bleach: Thousand-Year Blood War" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bleach: Thousand-...</h5>
+                                    <a href="bleach.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3 kenshin-card" style="width: 100%;">
+                                <img src="kenshin.jpg" class="card-img-top" alt="Blue Lock Season 2" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Rurouni Kenshin:...</h5>
+                                    <a href="kenshin.html" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="dragon.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Goodbye,Dragon Life</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3 bleach-card" style="width: 100%;">
+                                <img src="oshi-no-ko-season-2-key-visual-v0-o8EhcuSHC2__9L52lzjMGI9pHds9z3J3PWFGnhIcPLY.jpg" class="card-img-top" alt="Bleach: Thousand-Year Blood War" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Oshi no ko Season 2</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3 kenshin-card" style="width: 100%;">
+                                <img src="wind.jpg" class="card-img-top" alt="Blue Lock Season 2" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Wind Breaker</h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card mb-3" style="width: 100%;">
+                                <img src="zero.jpg" class="card-img-top" alt="One Piece" style="width: 100%; height: 30vh; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Re: Zero Season 3 </h5>
+                                    <a href="#" class="btn btn-primary" style="background-color: #4cd964; border: 0;">Watch now <i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                  3 of 3
+                </div>
+              </div>
+            </div>
+
+    <!--footer -->
+    <div class="row m-0" style="background-color: rgb(128, 128, 128) !important;" id="aboutus">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4 p-5 text-center">
+            <h4>Aniflix</h4>
+            <small>
+                © 2024 Aniflix, Inc. All Rights Reserved
+            </small>
+        </div>
+            <div class="col-sm-4 p-5 text-center">
+                <h4>Join Us In</h4>
+                <div>
+                    <a href="https://www.facebook.com/zedvillanueva41">
+                        <i class="fa-brands fa-facebook fa-2x" style="color: #111111 !important;"></i>
+                    </a>
+                    <a href="https://discord.com">
+                        <i class="fa-brands fa-discord fa-2x" style="color: #111111 !important;"></i>
+                    </a>
+                    <a href="https://www.reddit.com" style="color: #111111 !important;">
+                        <i class="fab fa-reddit fa-2x"></i>
+                    </a>
+                    <a href="https://www.instagram.com/zzdv_16/" style="color: #111111 !important;">
+                        <i class="fa-brands fa-instagram fa-2x"></i>
+                    </a>
+                </div>
+            </div>   
+    </div>
+    
+</body>
+
+<script>
+    const video = document.getElementById('video');
+    const playButton = document.getElementById('playButton');
+
+    playButton.addEventListener('click', () => {
+        video.play();          // Play the video
+        playButton.style.display = 'none';  // Hide the play button
+    });
+
+    video.addEventListener('pause', () => {
+        playButton.style.display = 'block';  // Show the play button when paused
+    });
+
+    video.addEventListener('play', () => {
+        playButton.style.display = 'none';   // Hide the play button when playing
+    });
+
+    muteButton.addEventListener('click', () => {
+            video.muted = !video.muted; // Toggle mute
+            muteButton.innerHTML = video.muted ? 
+                '<i class="fa-solid fa-volume-mute"></i>' : 
+                '<i class="fa-solid fa-volume-up"></i>';
+    });
+</script>
+</html>
+
